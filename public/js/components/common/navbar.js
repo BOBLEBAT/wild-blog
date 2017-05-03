@@ -1,7 +1,12 @@
+import moment from 'moment'
+
 let navbar = {
     templateUrl: 'js/components/common/navbar.html',
     controller: ['UsersService', '$state', function(UsersService, $state) {
         'use strict'
+
+        this.date = moment().format();
+
         angular.extend(this, {
             $onInit() {
                 UsersService.getCurrent().then((user) => {

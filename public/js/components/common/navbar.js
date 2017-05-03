@@ -7,6 +7,9 @@ let navbar = {
 
         this.date = moment().format();
 
+        //setTimeout(????, 1000);
+
+
         angular.extend(this, {
             $onInit() {
                 UsersService.getCurrent().then((user) => {

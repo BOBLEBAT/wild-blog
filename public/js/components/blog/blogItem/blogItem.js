@@ -82,12 +82,13 @@ let blogItem = {
 
         this.isFav = () => {
             if (!this.post) return
-            return (this.user.bookmarks.find((post_id) => post_id.id === this.post._id))
+            console.log(this.user.bookmarks)
+            return (this.user.bookmarks.find((post_id) => post_id === this.post))
         }
 
         this.addOrRemoveToBookmark = () => {
             // Try to find post in bookmarks
-            let postFound = this.user.bookmarks.find((post) => post.id === this.post._id)
+            let postFound = this.user.bookmarks.find((post) => post === this.post)
 
             if (!postFound) {
                 //Not found
@@ -100,7 +101,7 @@ let blogItem = {
             }
 
             UsersService.update(this.user).then((res) => {
-                //return UsersService.setToken(res.data.token)
+                return UsersService.setToken(res.data.token)
             }).then((user) => {
                 Materialize.toast((postFound ? 'Removed' : 'Added'), 2000, (postFound ? 'toast-warning' : 'toast-success'))
             }).catch((err) => {
